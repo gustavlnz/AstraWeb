@@ -17,7 +17,13 @@ namespace AstraWebMvc.Controllers
         {
             return View();
         }
-
+        public IActionResult About()
+        {
+            ViewData["Message"] = "Astra web MVC app from C#";
+            ViewData["Email"] = "gustavolias.lanza@gmail.com";
+            ViewData["CEO"] = "CEO: Gustavo Dargam";
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
