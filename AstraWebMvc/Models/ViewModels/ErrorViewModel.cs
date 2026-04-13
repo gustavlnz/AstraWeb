@@ -1,4 +1,4 @@
-namespace AstraWebMvc.Models
+namespace AstraWebMvc.Models.ViewModels
 {
     public class ErrorViewModel
     {

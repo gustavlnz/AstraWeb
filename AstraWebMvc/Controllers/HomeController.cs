@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using AstraWebMvc.Models;
+using AstraWebMvc.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AstraWebMvc.Controllers
