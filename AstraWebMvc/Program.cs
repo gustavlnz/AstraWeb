@@ -1,4 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using AstraWebMvc.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<AstraWebMvcContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AstraWebMvcContext") ?? throw new InvalidOperationException("Connection string 'AstraWebMvcContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
