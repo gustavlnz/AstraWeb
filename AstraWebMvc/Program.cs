@@ -1,16 +1,20 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using AstraWebMvc.Data;
+
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<AstraWebMvcContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("AstraWebMvcContext") ?? throw new InvalidOperationException("Connection string 'AstraWebMvcContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<AstraWebMvcContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("AstraWebMvcContext"),
+        new MySqlServerVersion(new Version(8, 0, 45))
+    )
+);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline. public void configure
+// Configure the HTTP request pipeline. public void configurez
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
