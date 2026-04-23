@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using AstraWebMvc.Models;
+using AstraWebMvc.Models.ViewModels;
 
 namespace AstraWebMvc.Data
 {
@@ -14,6 +15,9 @@ namespace AstraWebMvc.Data
         {
         }
 
-        public DbSet<AstraWebMvc.Models.Department> Department { get; set; } = default!;
+        public DbSet<Department> Department { get; set; } = default!;
+        public DbSet<Seller> Sellers { get; set; }
+        public DbSet<SalesRecord> SalesRecord { get; set; }
+
     }
 }
