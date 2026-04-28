@@ -1,6 +1,6 @@
 ﻿using AstraWebMvc.Data;
 using Microsoft.EntityFrameworkCore;
-
+using AstraWebMvc.Services;
 namespace AstraWebMvc
 {
     public class Startup
@@ -33,6 +33,7 @@ namespace AstraWebMvc
                     builder => builder.MigrationsAssembly("AstraWebMvc")));
 
             builder.Services.AddScoped<SeedingService>();
+            builder.Services.AddScoped<SellersServices>();
         }
 
 

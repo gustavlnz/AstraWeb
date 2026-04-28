@@ -1,9 +1,11 @@
-using Microsoft.EntityFrameworkCore;
 using AstraWebMvc.Data;
+using AstraWebMvc.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<SellersServices>();
 builder.Services.AddScoped<SeedingService>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AstraWebMvcContext>(options =>
