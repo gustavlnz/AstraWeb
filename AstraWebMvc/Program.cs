@@ -4,6 +4,7 @@ using AstraWebMvc.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<SeedingService>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AstraWebMvcContext>(options =>
     options.UseMySql(
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<AstraWebMvcContext>(options =>
 
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline. public void configurez
 if (!app.Environment.IsDevelopment())
 {
@@ -21,7 +23,11 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+using (var scope = app.Services.CreateScope())
+{
+    var seedingService = scope.ServiceProvider.GetRequiredService<SeedingService>();
+    seedingService.Seed();
+}
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

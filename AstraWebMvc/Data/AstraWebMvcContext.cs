@@ -15,7 +15,7 @@ namespace AstraWebMvc.Data
         {
         }
 
-        public DbSet<Department> Department { get; set; } = default!;
+        public DbSet<Department> Department { get; set; }
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<SalesRecord> SalesRecord { get; set; }
 

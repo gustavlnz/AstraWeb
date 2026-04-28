@@ -6,19 +6,10 @@ namespace AstraWebMvc.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
 
         public ICollection<Seller> Sellers { get; set; } = new List<Seller>();
 
-        public Department()
-        {
-        }
-        public Department(int id, string name, string description)
-        {
-            Id = id;
-            Name = name;
-            Description = description;
-        }
+       
 
         public void addSeller(Seller seller)
         {
