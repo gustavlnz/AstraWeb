@@ -22,17 +22,48 @@ namespace AstraWebMvc.Data
             }
 
             // Criando departamentos
-            Department d1 = new Department { Name = "Computers" };
-            Department d2 = new Department { Name = "Electronics" };
-            Department d3 = new Department { Name = "Fashion" };
-            Department d4 = new Department { Name = "Books" };
+            Department d1 = new Department { Name = "Computers" };   // ID = 1
+            Department d2 = new Department { Name = "Electronics" }; // ID = 2
+            Department d3 = new Department { Name = "Fashion" };     // ID = 3
+            Department d4 = new Department { Name = "Books" };       // ID = 4
+
+            _context.Department.AddRange(d1, d2, d3, d4);
+            _context.SaveChanges(); // 👈 Agora d1.Id = 1, d2.Id = 2, etc.
+
 
             // Criando vendedores
-            Seller s1 = new Seller { Name = "Bob Brown", Email = "bob@gmail.com", BirthDate = new DateTime(1998, 4, 21), BaseSalary = 1000.0, department = d1 };
-            Seller s2 = new Seller { Name = "Maria Green", Email = "maria@gmail.com", BirthDate = new DateTime(1979, 12, 31), BaseSalary = 3500.0, department = d2 };
-            Seller s3 = new Seller { Name = "Alex Grey", Email = "alex@gmail.com", BirthDate = new DateTime(1988, 1, 15), BaseSalary = 2200.0, department = d1 };
-            Seller s4 = new Seller { Name = "Martha Red", Email = "martha@gmail.com", BirthDate = new DateTime(1993, 11, 30), BaseSalary = 3000.0, department = d4 };
-
+            Seller s1 = new Seller
+            {
+                Name = "Bob Brown",
+                Email = "bob@gmail.com",
+                BirthDate = new DateTime(1998, 4, 21),
+                BaseSalary = 1000.0,
+                DepartmentId = d1.Id   // 1 = Computers
+            };
+            Seller s2 = new Seller
+            {
+                Name = "Maria Green",
+                Email = "maria@gmail.com",
+                BirthDate = new DateTime(1979, 12, 31),
+                BaseSalary = 3500.0,
+                DepartmentId = d2.Id   // 2 = Electronics
+            };
+            Seller s3 = new Seller
+            {
+                Name = "Alex Grey",
+                Email = "alex@gmail.com",
+                BirthDate = new DateTime(1988, 1, 15),
+                BaseSalary = 2200.0,
+                DepartmentId = d1.Id   // 1 = Computers
+            };
+            Seller s4 = new Seller
+            {
+                Name = "Martha Red",
+                Email = "martha@gmail.com",
+                BirthDate = new DateTime(1993, 11, 30),
+                BaseSalary = 3000.0,
+                DepartmentId = d4.Id   // 4 = Books
+            };
             // Criando registros de vendas
             SalesRecord r1 = new SalesRecord { Date = new DateTime(2024, 1, 10), Amount = 11000.0, Status = Models.Enums.SaleStatus.Billed, Seller = s1 };
             SalesRecord r2 = new SalesRecord { Date = new DateTime(2024, 2, 15), Amount = 15000.0, Status = Models.Enums.SaleStatus.Pending, Seller = s2 };
@@ -40,7 +71,6 @@ namespace AstraWebMvc.Data
             SalesRecord r4 = new SalesRecord { Date = new DateTime(2024, 4, 25), Amount = 20000.0, Status = Models.Enums.SaleStatus.Billed, Seller = s4 };
 
             // Add to the database - CADA ENTIDADE NA SUA TABELA CORRETA
-            _context.Department.AddRange(d1, d2, d3, d4);
             _context.Sellers.AddRange(s1, s2, s3, s4);
             _context.SalesRecord.AddRange(r1, r2, r3, r4);
             _context.SaveChanges();

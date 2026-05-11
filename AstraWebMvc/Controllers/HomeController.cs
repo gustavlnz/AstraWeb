@@ -25,6 +25,13 @@ namespace AstraWebMvc.Controllers
             ViewData["CEO"] = "CEO: Gustavo Dargam";
             return View();
         }
+        public IActionResult SeedNow()
+        {
+            var seedingService = HttpContext.RequestServices.GetRequiredService<AstraWebMvc.Data.SeedingService>();
+            seedingService.Seed();
+            return Content("? Seeding executado! Agora vá para /Sellers");
+        }
+
         public IActionResult Privacy()
         {
             return View();

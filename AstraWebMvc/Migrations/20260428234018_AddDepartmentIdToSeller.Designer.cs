@@ -4,6 +4,7 @@ using AstraWebMvc.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AstraWebMvc.Migrations
 {
     [DbContext(typeof(AstraWebMvcContext))]
-    partial class AstraWebMvcContextModelSnapshot : ModelSnapshot
+    [Migration("20260428234018_AddDepartmentIdToSeller")]
+    partial class AddDepartmentIdToSeller
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,13 +103,13 @@ namespace AstraWebMvc.Migrations
 
             modelBuilder.Entity("AstraWebMvc.Models.Seller", b =>
                 {
-                    b.HasOne("AstraWebMvc.Models.Department", "Department")
+                    b.HasOne("AstraWebMvc.Models.Department", "department")
                         .WithMany("Sellers")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Department");
+                    b.Navigation("department");
                 });
 
             modelBuilder.Entity("AstraWebMvc.Models.ViewModels.SalesRecord", b =>

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AstraWebMvc.Migrations
 {
     [DbContext(typeof(AstraWebMvcContext))]
-    [Migration("20260427144812_Initial")]
+    [Migration("20260504183942_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -56,6 +56,9 @@ namespace AstraWebMvc.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -64,12 +67,9 @@ namespace AstraWebMvc.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("departmentId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("departmentId");
+                    b.HasIndex("DepartmentId");
 
                     b.ToTable("Sellers");
                 });
@@ -103,13 +103,13 @@ namespace AstraWebMvc.Migrations
 
             modelBuilder.Entity("AstraWebMvc.Models.Seller", b =>
                 {
-                    b.HasOne("AstraWebMvc.Models.Department", "department")
+                    b.HasOne("AstraWebMvc.Models.Department", "Department")
                         .WithMany("Sellers")
-                        .HasForeignKey("departmentId")
+                        .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("department");
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("AstraWebMvc.Models.ViewModels.SalesRecord", b =>
